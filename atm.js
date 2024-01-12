@@ -1,4 +1,5 @@
 import inquirer from 'inquirer';
+;
 async function atm() {
     console.log("Welcome to ABC Bank!");
     const userData = await inquirer.prompt([
@@ -38,13 +39,13 @@ async function atm() {
         }
     ]);
     const balance = Math.floor(Math.random() * 1000000);
+    console.log(`Your current balance is PKR ${balance.toLocaleString()}`);
     if (userData.transactionType === "Fast Cash Withdrawl" || userData.transactionType === "Normal Withdrawl") {
-        console.log(`Your current balance is PKR ${balance.toLocaleString()}`);
-        const remainingBal = balance - userData.amount;
         if (balance >= userData.amount) {
+            const remainingBal = balance - userData.amount;
             console.log(`Transaction successful! your remaining balance is PKR ${remainingBal.toLocaleString()}`);
         }
-        else {
+        else if (balance < userData.amount) {
             console.log("Please try again with a lower amount");
         }
     }

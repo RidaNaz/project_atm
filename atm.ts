@@ -6,10 +6,10 @@ interface UserData {
     accountType: string,
     transactionType: string,
     amount: number
-}
+};
 
 async function atm() {
-    console.log ("Welcome to ABC Bank!")
+    console.log("Welcome to ABC Bank!");
     const userData: UserData = await inquirer.prompt([
         {
             type: "string",
@@ -45,24 +45,24 @@ async function atm() {
                 return userData.transactionType === "Normal Withdrawl"
             },
         }
-    ])
-    
-        const balance = Math.floor(Math.random() * 1000000)
+    ]);
 
-        if (userData.transactionType === "Fast Cash Withdrawl" || userData.transactionType === "Normal Withdrawl") {
-            console.log(`Your current balance is PKR ${balance.toLocaleString()}`)
+    const balance = Math.floor(Math.random() * 1000000)
 
+    if (userData.transactionType === "Fast Cash Withdrawl" || userData.transactionType === "Normal Withdrawl") {
+        console.log(`Your current balance is PKR ${balance.toLocaleString()}`)
+
+        if (balance >= userData.amount) {
             const remainingBal = balance - userData.amount
 
-            if (balance >= userData.amount) {
-
-                console.log(`Transaction successful! your remaining balance is PKR ${remainingBal.toLocaleString()}`)
-            } else {
-                console.log("Please try again with a lower amount")
-            }
-        } else if (userData.transactionType === "Balance") {
-            console.log(`Your current balance is PKR ${balance.toLocaleString()}`)
+            console.log(`Transaction successful! your remaining balance is PKR ${remainingBal.toLocaleString()}`)
+        } else if (balance < userData.amount) {
+            console.log("Please try again with a lower amount")
         }
+    }
+    else if (userData.transactionType === "Balance") {
+        console.log(`Your current balance is PKR ${balance.toLocaleString()}`)
+    }
 }
 
 atm()
