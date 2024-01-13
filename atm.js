@@ -39,8 +39,8 @@ async function atm() {
         }
     ]);
     const balance = Math.floor(Math.random() * 1000000);
-    console.log(`Your current balance is PKR ${balance.toLocaleString()}`);
     if (userData.transactionType === "Fast Cash Withdrawl" || userData.transactionType === "Normal Withdrawl") {
+        console.log(`Your current balance is PKR ${balance.toLocaleString()}`);
         if (balance >= userData.amount) {
             const remainingBal = balance - userData.amount;
             console.log(`Transaction successful! your remaining balance is PKR ${remainingBal.toLocaleString()}`);
